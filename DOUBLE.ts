@@ -4,17 +4,15 @@ namespace double {
     let remoteValues: { [key: string]: number } = {};
 
     /**
-     * חיבור לפרויקט אחר דרך הרדיו. 
-     * וודא שבשני המיקרוביטים מוגדר אותו מספר קבוצה.
+     * חיבור לפרויקט אחר דרך הרדיו
      */
     //% block="connect to project on group %id"
-    //% id.min=0 id.max=255 id.defl=1
     export function connectProject(id: number): void {
         radio.setGroup(id);
     }
 
     /**
-     * מסנכרן משתנה עם המיקרוביט השני.
+     * מסנכרן משתנה
      */
     //% block="sync variable %name with value %value"
     export function syncVar(name: string, value: number): void {
@@ -22,24 +20,14 @@ namespace double {
     }
 
     /**
-     * קבלת הערך האחרון של משתנה מהפרויקט השני
+     * בלוק אירוע שמופעל כשיש נתון חדש
      */
-    //% block="remote variable %name"
-    export function getRemoteVar(name: string): number {
-        return remoteValues[name] || 0;
-    }
-
-    /**
-     * אירוע שמופעל כשמשתנה מסתנכרן מהצד השני.
-     * הבלוק הזה מתוקן ולא יציג שגיאות!
-     */
-    //% block="on variable synced"
+    //% block="on variable received"
     //% draggableParameters="reporter"
-    export function onVariableSynced(handler: (name: string, value: number) => void) {
+    export function onVarReceived(handler: (name: string, value: number) => void) {
         onSyncHandler = handler;
     }
 
-    // ניהול קבלת הנתונים ברדיו
     radio.onReceivedValue(function (name, value) {
         if (name.startsWith("s_")) {
             let varName = name.substr(2);
