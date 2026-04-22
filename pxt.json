@@ -4,7 +4,8 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "DOUBLE VERSION 2": "github:otizemlanetzag/double-version-2#dec9335e4099f72090f7ece806667254972ef8d0"
     },
     "files": [
         "main.blocks",
