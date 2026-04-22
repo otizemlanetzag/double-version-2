@@ -20,11 +20,19 @@ namespace double {
     }
 
     /**
-     * בלוק אירוע שמופעל כשיש נתון חדש
+     * קבלת ערך מרוחק
      */
-    //% block="on variable received"
+    //% block="remote variable %name"
+    export function getRemoteVar(name: string): number {
+        return remoteValues[name] || 0;
+    }
+
+    /**
+     * הבלוק המתוקן - ללא תפריטים נפתחים!
+     */
+    //% block="on variable synced"
     //% draggableParameters="reporter"
-    export function onVarReceived(handler: (name: string, value: number) => void) {
+    export function onVariableSynced(handler: (name: string, value: number) => void) {
         onSyncHandler = handler;
     }
 
@@ -38,3 +46,4 @@ namespace double {
         }
     })
 }
+// Voer hier je code in
